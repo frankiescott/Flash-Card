@@ -1,0 +1,37 @@
+<MainView>:
+    orientation: "vertical"
+    GridLayout:
+        cols: 1
+        rows: 2
+        size: self.parent.size
+        pos: self.parent.pos
+        Label:
+            size_hint: 0.5, 0.5
+            text: root.question
+        Label:
+            size_hint: 0.5, 0.5
+            text: root.answer
+    GridLayout:
+        size_hint: 1, .2
+        cols: 3
+        rows: 1
+        size: self.parent.size
+        pos: self.parent.pos
+        Button:
+            id: correct_button
+            background_color: (0, 255, 0, 0)
+            on_press: root.correct()
+            text: "Correct"
+            color: (0, 0, 0, 1)
+        Button:
+            id: reveal_button
+            background_color: (1, 1, 1, 1)
+            text: "Reveal Answer"
+            color: (0, 0, 0, 1)
+            on_press: root.update()
+        Button:
+            id: incorrect_button
+            background_color: (255, 0, 0, 0)
+            text: "Incorrect"
+            color: (0, 0, 0, 1)
+            on_press: root.incorrect()
