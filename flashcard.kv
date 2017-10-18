@@ -1,16 +1,34 @@
 <MainView>:
     orientation: "vertical"
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: '.\\bg.jpg'
     GridLayout:
         cols: 1
-        rows: 2
+        rows: 3
         size: self.parent.size
         pos: self.parent.pos
         Label:
-            size_hint: 0.5, 0.5
-            text: root.question
+            id: score_label
+            size_hint: 1, 0.2
+            font_size: 38
+            padding: 1, 15
+            text: root.score
+            color: (0, 0, 0, 1)
+            size: self.size
         Label:
-            size_hint: 0.5, 0.5
+            size_hint: 1, 0.5
+            text_size: self.size
+            halign: 'center'
+            valign: 'center'
+            text: root.question
+            color: (0, 0, 0, 1)
+        Label:
+            size_hint: 1, 0.5
             text: root.answer
+            color: (0, 0, 0, 1)
     GridLayout:
         size_hint: 1, .2
         cols: 3
@@ -19,19 +37,19 @@
         pos: self.parent.pos
         Button:
             id: correct_button
-            background_color: (0, 255, 0, 0)
+            background_color: (0, 255, 0, .1)
             on_press: root.correct()
             text: "Correct"
             color: (0, 0, 0, 1)
         Button:
             id: reveal_button
-            background_color: (1, 1, 1, 1)
+            background_color: (1, 1, 1, .6)
             text: "Reveal Answer"
             color: (0, 0, 0, 1)
             on_press: root.update()
         Button:
             id: incorrect_button
-            background_color: (255, 0, 0, 0)
+            background_color: (255, 0, 0, .1)
             text: "Incorrect"
             color: (0, 0, 0, 1)
             on_press: root.incorrect()

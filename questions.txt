@@ -1,5 +1,4 @@
-Who was the first president of the United States?, George Washington
-Curiosity is a car-sized rover that was launched by NASA in 2011 to explore which planet?, Mars
-What is the capital of New York?, Albany
-What city is SUNY Orange located in?, Middletown
-What is the closest neighboring galaxy to the Milky Way?, Andromeda Galaxy
+What kind of loop would you use to execute a block of code a set number of times?,For loop
+Which function is used to display text in the terminal?,print()
+What is an argument?,A value that gets passed to a function
+Which Python library would you use to generate a random number?,random
