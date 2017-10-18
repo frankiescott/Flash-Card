@@ -5,9 +5,7 @@ Config.set('graphics', 'height', '300')
 from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
-from kivy.lang import Builder
 from kivy.properties import StringProperty
-from kivy.properties import ObjectProperty
 from kivy.uix.widget import Widget
 from qlist import QList
 
