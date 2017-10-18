@@ -7,9 +7,16 @@ from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import StringProperty
 from kivy.uix.widget import Widget
+from kivy.uix.screenmanager import ScreenManager, Screen
 from qlist import QList
 
-class MainView(BoxLayout):
+class FinishScreen(Screen):
+    pass
+
+class MenuScreen(Screen):
+    pass
+
+class FlashCard(Screen):
     l = QList()
     qa = l.getFirst()
     question = StringProperty(qa.question)
@@ -41,7 +48,7 @@ class MainView(BoxLayout):
             self.qa.score += 1
             if self.qa.score is 3:
                 if self.l.delete(self.qa) is True:
-                    App.get_running_app().stop()
+                    self.manager.current = "finish"
 
             self.next()
 
@@ -53,7 +60,11 @@ class MainView(BoxLayout):
 
 class FlashCardApp(App):
     def build(self):
-        return MainView()
+        sm = ScreenManager()
+        sm.add_widget(MenuScreen(name='menu'))
+        sm.add_widget(FlashCard(name='main'))
+        sm.add_widget(FinishScreen(name='finish'))
+        return sm
 
 if __name__ == "__main__":
     FlashCardApp().run()

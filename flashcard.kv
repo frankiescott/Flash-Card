@@ -1,55 +1,78 @@
-<MainView>:
-    orientation: "vertical"
-    canvas.before:
-        Rectangle:
-            pos: self.pos
-            size: self.size
-            source: '.\\bg.jpg'
-    GridLayout:
-        cols: 1
-        rows: 3
-        size: self.parent.size
-        pos: self.parent.pos
+<FinishScreen>:
+    BoxLayout:
+        orientation: "vertical"
         Label:
-            id: score_label
-            size_hint: 1, 0.2
-            font_size: 38
-            padding: 1, 15
-            text: root.score
-            color: (0, 0, 0, 1)
-            size: self.size
+            text: "You have finished this set!"
+        Button:
+            text: "Return to menu"
+            on_press: root.manager.current = "menu"
+
+<MenuScreen>:
+    BoxLayout:
+        orientation: "vertical"
         Label:
-            size_hint: 1, 0.5
-            text_size: self.size
-            halign: 'center'
-            valign: 'center'
-            text: root.question
-            color: (0, 0, 0, 1)
-        Label:
-            size_hint: 1, 0.5
-            text: root.answer
-            color: (0, 0, 0, 1)
-    GridLayout:
-        size_hint: 1, .2
-        cols: 3
-        rows: 1
-        size: self.parent.size
-        pos: self.parent.pos
+            text: "Flash Cards"
         Button:
-            id: correct_button
-            background_color: (0, 255, 0, .1)
-            on_press: root.correct()
-            text: "Correct"
-            color: (0, 0, 0, 1)
+            text: "Start"
+            on_press: root.manager.current = "main"
         Button:
-            id: reveal_button
-            background_color: (1, 1, 1, .6)
-            text: "Reveal Answer"
-            color: (0, 0, 0, 1)
-            on_press: root.update()
-        Button:
-            id: incorrect_button
-            background_color: (255, 0, 0, .1)
-            text: "Incorrect"
-            color: (0, 0, 0, 1)
-            on_press: root.incorrect()
+            text: "Exit"
+            on_press: app.stop()
+
+<FlashCard>:
+    BoxLayout:
+        orientation: "vertical"
+        canvas.before:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '.\\bg.jpg'
+
+        GridLayout:
+            cols: 1
+            rows: 3
+            size: self.parent.size
+            pos: self.parent.pos
+            Label:
+                id: score_label
+                size_hint: 1, 0.2
+                font_size: 38
+                text: root.score
+                color: (0, 0, 0, 1)
+                size: self.size
+            Label:
+                size_hint: 1, 0.5
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                text: root.question
+                color: (0, 0, 0, 1)
+            Label:
+                size_hint: 1, 0.5
+                text: root.answer
+                color: (0, 0, 0, 1)
+
+        GridLayout:
+            size_hint: 1, .2
+            cols: 3
+            rows: 1
+            size: self.parent.size
+            pos: self.parent.pos
+            Button:
+                id: correct_button
+                background_color: (0, 255, 0, .1)
+                text: "Correct"
+                color: (0, 0, 0, 1)
+                on_press: root.correct()
+            Button:
+                id: reveal_button
+                background_color: (1, 1, 1, .6)
+                text: "Reveal Answer"
+                color: (0, 0, 0, 1)
+                on_press: root.update()
+            Button:
+                id: incorrect_button
+                background_color: (255, 0, 0, .1)
+                text: "Incorrect"
+                color: (0, 0, 0, 1)
+                on_press: root.incorrect()
