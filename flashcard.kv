@@ -12,12 +12,20 @@
         orientation: "vertical"
         Label:
             text: "Flash Cards"
-        Button:
-            text: "Start"
-            on_press: root.manager.current = "main"
-        Button:
-            text: "Exit"
-            on_press: app.stop()
+        Label:
+            text: "You will be asked a question that you need to answer to yourself. When you reveal the answer, mark the question as either incorrect or correct. When you answer a question successfully 3 times, that question is removed from the list. Once all questions have been removed from the list, you are finished with the set!"
+            text_size: self.size
+            valign: 'center'
+            halign: 'center'
+        BoxLayout:
+            size_hint: 1, .4
+            Button:
+                text: "Start"
+                width: 200
+                on_press: root.manager.current = "main"
+            Button:
+                text: "Exit"
+                on_press: app.stop()
 
 <FlashCard>:
     BoxLayout:
@@ -26,7 +34,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-                source: '.\\bg.jpg'
+                source: '.\\bg.png'
 
         GridLayout:
             cols: 1
@@ -37,7 +45,7 @@
                 id: score_label
                 size_hint: 1, 0.2
                 font_size: 38
-                text: root.score
+                text: root.score_display
                 color: (0, 0, 0, 1)
                 size: self.size
             Label:
@@ -45,11 +53,11 @@
                 text_size: self.size
                 halign: 'center'
                 valign: 'center'
-                text: root.question
+                text: root.question_display
                 color: (0, 0, 0, 1)
             Label:
                 size_hint: 1, 0.5
-                text: root.answer
+                text: root.answer_display
                 color: (0, 0, 0, 1)
 
         GridLayout:
@@ -69,7 +77,7 @@
                 background_color: (1, 1, 1, .6)
                 text: "Reveal Answer"
                 color: (0, 0, 0, 1)
-                on_press: root.update()
+                on_press: root.reveal_answer()
             Button:
                 id: incorrect_button
                 background_color: (255, 0, 0, .1)

@@ -17,46 +17,52 @@ class MenuScreen(Screen):
     pass
 
 class FlashCard(Screen):
-    l = QList()
-    qa = l.getFirst()
-    question = StringProperty(qa.question)
-    answer = StringProperty()
-    score = StringProperty(str(qa.score))
+    qlist = QList() #create list and populate with question/answer nodes
+    itr = qlist.iter() #iterator handle for the list
+    qa = itr.next() #grabs first qa node from the list
+
+    #populate the display information
+    question_display = StringProperty(qa.question)
+    answer_display = StringProperty()
+    score_display = StringProperty(str(qa.score))
 
     count = 0
-    def update(self):
+    def reveal_answer(self):
         if self.count % 2 == 0:
-            self.answer = self.qa.answer
             self.count = 1
+            self.answer_display = self.qa.answer
             self.ids.correct_button.background_color = [0, 255, 0, .6]
             self.ids.incorrect_button.background_color = [255, 0, 0, .6]
             self.ids.reveal_button.background_color = [1, 1, 1, .3]
 
     def next(self):
         self.count = 0
-        self.qa = self.qa.next
-        self.score = str(self.qa.score)
-        self.answer = ""
-        self.question = self.qa.question
+        self.qa = self.itr.next() #advance the iterator to get the next qa node
 
+        #update display labels
+        self.score_display = str(self.qa.score)
+        self.answer_display = ""
+        self.question_display = self.qa.question
+        #adjust button colors
         self.ids.correct_button.background_color = [0, 255, 0, .1]
         self.ids.incorrect_button.background_color = [255, 0, 0, .1]
         self.ids.reveal_button.background_color = [1, 1, 1, .6]
 
     def correct(self):
-        if self.count % 2 is 1:
+        if self.count % 2 is 1: #disables the use of the correct button if the answer hasn't been revealed
             self.qa.score += 1
-            if self.qa.score is 3:
-                if self.l.delete(self.qa) is True:
+            if self.qa.score is 2:
+                self.qa.hidden = True #hide the question if the user answers correctly twice
+                if self.qlist.allhidden() is True: #if all questions are hidden, the set is done
+                    self.qlist.reset()
                     self.manager.current = "finish"
-
-            self.next()
+            self.next() #go to the next question
 
     def incorrect(self):
-        if self.count % 2 is 1:
-            if self.qa.score > 0:
+        if self.count % 2 is 1: #disables the use of the incorrect button if the answer hasn't been revealed
+            if self.qa.score > 0: #score can't go below 0
                 self.qa.score -= 1
-            self.next()
+            self.next() #go to the next question
 
 class FlashCardApp(App):
     def build(self):
