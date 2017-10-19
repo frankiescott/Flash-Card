@@ -1,5 +1,4 @@
 from kivy.config import Config
-Config.set('graphics', 'resizable', '0')
 Config.set('graphics', 'width', '800')
 Config.set('graphics', 'height', '300')
 from kivy.app import App
