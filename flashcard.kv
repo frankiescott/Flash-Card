@@ -15,7 +15,7 @@
         Label:
             text: "You will be asked a question that you need to answer to yourself. When you reveal the answer, mark the question as either incorrect or correct. When you answer a question successfully 3 times, that question is removed from the list. Once all questions have been removed from the list, you are finished with the set!"
             text_size: self.size
-            valign: 'center'
+            valign: 'middle'
             halign: 'center'
         BoxLayout:
             size_hint: 1, .4
@@ -34,7 +34,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-                source: '.\\bg.png'
+                source: "bg.png"
 
         GridLayout:
             size_hint: .15, 1
@@ -66,7 +66,7 @@
                 text_size: self.size
                 font_size: 28
                 halign: 'center'
-                valign: 'center'
+                valign: 'middle'
                 text: root.question_display
                 color: (0, 0, 0, 1)
             Label:
@@ -74,10 +74,11 @@
                 text_size: self.size
                 font_size: 24
                 halign: 'center'
-                valign: 'center'
+                valign: 'middle'
                 text: root.answer_display
                 color: (0, 0, 0, 1)
             Button:
+                size_hint: 1, .3
                 id: reveal_button
                 background_color: (1, 1, 1, .6)
                 text: "Reveal Answer"
