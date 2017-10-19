@@ -1,3 +1,4 @@
+import os.path
 class Node():
     def __init__(self, q, a):
         self.question = q
@@ -11,10 +12,11 @@ class QList():
     last = None
     size = 0
     def __init__(self):
-        with open(".\\questions.txt", "r") as filestream:
+        with open(os.path.abspath("questions.txt"), "r") as filestream:
             for line in filestream:
                 currentline = line.rstrip('\n').split(",")
                 self.add(currentline[0], currentline[1])
+
     def iter(self):
         return QListIterator(self.first)
 
