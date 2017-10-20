@@ -1,4 +1,18 @@
-What kind of loop would you use to execute a block of code a set number of times?,For loop
-Which function is used to display text in the terminal?,print()
-What is an argument?,A value that gets passed to a function
-Which Python library would you use to generate a random number?,random
+Give an example of a sentinel value, The number 99 in a list of numbers that only range from 1 - 10
+How many bits are in a byte?, 8
+What is the key word for an event driven loop?, While
+What is the key word for a numerically driven loop?, For
+What is the time complexity for the merge sort algorithm?, n[log(n)]
+How is the bubble sort algorithm structured?, An inner loop - an outer loop - and a conditional statement.
+What kind of loop would you use for input validation?, While loop
+What advantage does a linked list have over an array?, A linked list is not static in size.
+What advantage does an array have over a linked list?, The machine does not have to traverse the entire array to retrieve an element.
+Is Java similar to JavaScript?, No. Java is a statically typed programming language and JavaScript is a dynamically typed interpreted language.
+The processor only understands what kind of instructions?, Binary
+What is the next level above binary language?, Assembler
+What does the symbol '||' mean?, Or
+What does the symbol '&&' mean?, And
+What is the difference between '=' and '=='?, '=' is an assignment operator and '==' is a logical operator meaning "equal"
+What subscript would you use to access the first element in an array?, [0]
+What is the term for '>>' and '<<' in C++?, Stream operators
+What is scope?, The region of a program where a variable can be accessed.

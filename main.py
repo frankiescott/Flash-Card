@@ -29,7 +29,7 @@ class FlashCard(Screen):
             self.answer_display = self.qa.answer
             self.ids.correct_button.background_color = [0, 255, 0, .6]
             self.ids.incorrect_button.background_color = [255, 0, 0, .6]
-            self.ids.reveal_button.background_color = [1, 1, 1, .3]
+            self.ids.reveal_button.background_color = [1, 1, 1, .05]
 
     #prompt the next question
     def next(self):
@@ -41,8 +41,8 @@ class FlashCard(Screen):
         self.answer_display = ""
         self.question_display = self.qa.question
         #adjust button colors
-        self.ids.correct_button.background_color = [0, 255, 0, .1]
-        self.ids.incorrect_button.background_color = [255, 0, 0, .1]
+        self.ids.correct_button.background_color = [0, 255, 0, .05]
+        self.ids.incorrect_button.background_color = [255, 0, 0, .05]
         self.ids.reveal_button.background_color = [1, 1, 1, .6]
 
     def correct(self):
@@ -60,6 +60,19 @@ class FlashCard(Screen):
             if self.qa.score > 0: #score can't go below 0
                 self.qa.score -= 1
             self.next() #go to the next question
+
+    def fontsize(self, text):
+        length = len(text)
+        if length > 75:
+            return "20dp"
+        elif length < 20:
+            return "80dp"
+        dp = 100
+        for x in range(1, length):
+            dp -= 1
+
+        return "{}dp".format(dp)
+
 
 class FlashCardApp(App):
     def build(self):

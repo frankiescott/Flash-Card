@@ -1,3 +1,14 @@
+<ScaleLabel@Label>:
+    _scale: 1. if self.texture_size[1] < self.height else float(self.height) / self.texture_size[1]
+    canvas.before:
+        PushMatrix
+        Scale:
+            origin: self.center
+            x: self._scale or 1.
+            y: self._scale or 1.
+    canvas.after:
+        PopMatrix
+
 <FinishScreen>:
     BoxLayout:
         orientation: "vertical"
@@ -12,16 +23,12 @@
         orientation: "vertical"
         Label:
             text: "Flash Cards"
-        Label:
-            text: "You will be asked a question that you need to answer to yourself. When you reveal the answer, mark the question as either incorrect or correct. When you answer a question successfully 3 times, that question is removed from the list. Once all questions have been removed from the list, you are finished with the set!"
-            text_size: self.size
-            valign: 'middle'
-            halign: 'center'
+            font_size: 48
+            padding: dp(12), dp(12)
         BoxLayout:
-            size_hint: 1, .4
+            size_hint: 1, .2
             Button:
                 text: "Start"
-                width: 200
                 on_press: root.manager.current = "main"
             Button:
                 text: "Exit"
@@ -44,7 +51,7 @@
             pos: self.parent.pos
             Button:
                 id: correct_button
-                background_color: (0, 255, 0, .1)
+                background_color: (0, 255, 0, .05)
                 text: "Correct"
                 color: (0, 0, 0, 1)
                 on_press: root.correct()
@@ -57,28 +64,28 @@
             Label:
                 id: score_label
                 size_hint: 1, 0.2
-                font_size: 38
+                font_size: 48
                 text: root.score_display
                 color: (0, 0, 0, 1)
                 size: self.size
-            Label:
-                size_hint: 1, 0.5
-                text_size: self.size
-                font_size: 28
+            ScaleLabel:
+                size_hint: 1, 0.42
                 halign: 'center'
                 valign: 'middle'
                 text: root.question_display
+                text_size: self.width, None
+                font_size: root.fontsize(self.text)
                 color: (0, 0, 0, 1)
-            Label:
-                size_hint: 1, 0.5
-                text_size: self.size
-                font_size: 24
+            ScaleLabel:
+                size_hint: 1, 0.42
+                text_size: self.width, None
+                font_size: root.fontsize(self.text)
                 halign: 'center'
                 valign: 'middle'
                 text: root.answer_display
                 color: (0, 0, 0, 1)
             Button:
-                size_hint: 1, .3
+                size_hint: 1, .16
                 id: reveal_button
                 background_color: (1, 1, 1, .6)
                 text: "Reveal Answer"
@@ -93,7 +100,7 @@
             pos: self.parent.pos
             Button:
                 id: incorrect_button
-                background_color: (255, 0, 0, .1)
+                background_color: (255, 0, 0, .05)
                 text: "Incorrect"
                 color: (0, 0, 0, 1)
                 on_press: root.incorrect()
